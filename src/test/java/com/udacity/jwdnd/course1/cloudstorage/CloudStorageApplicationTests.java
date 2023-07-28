@@ -369,6 +369,17 @@ class CloudStorageApplicationTests {
 		Assertions.assertEquals(1, rows.size());
 	}
 
+	@Test
+	public void testAccessHomeNotLogin() {
+		// Try to access a home page when not login
+		driver.get("http://localhost:" + this.port + "/home");
+		WebDriverWait webDriverWait = new WebDriverWait(driver, 2);
+
+		// Check if we have been redirected to the log in page.
+		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-button")));
+		Assertions.assertEquals("http://localhost:" + this.port + "/login", driver.getCurrentUrl());
+	}
+
 	/**
 	 * PLEASE DO NOT DELETE THIS method. Helper method for Udacity-supplied sanity
 	 * checks.
