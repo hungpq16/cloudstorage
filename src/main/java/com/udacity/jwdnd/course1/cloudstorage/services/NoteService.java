@@ -42,4 +42,7 @@ public class NoteService implements IBaseAction<Note> {
 		return noteMapper.deleteById(noteId, userId);
 	}
 
+	public Note findByTittelAndDescription(String noteTitle, String noteDescription) {
+		return noteMapper.findByTittelAndDescription(noteTitle, noteDescription);
+	}
 }

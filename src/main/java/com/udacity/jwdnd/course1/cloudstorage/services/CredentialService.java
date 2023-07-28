@@ -49,6 +49,10 @@ public class CredentialService implements IBaseAction<Credential> {
 		return credentialMapper.deleteById(credentialId, userId);
 	}
 
+	public Credential findByUrlAndUsername(String url, String username) {
+		return credentialMapper.findByUrlAndUsername(url, username);
+	}
+
 	private void encryptPassword(Credential credential) {
 		SecureRandom random = new SecureRandom();
 		byte[] key = new byte[16];

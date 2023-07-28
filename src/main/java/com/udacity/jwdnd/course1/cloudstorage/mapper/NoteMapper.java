@@ -18,7 +18,10 @@ public interface NoteMapper {
 	
 	// get note by id
 	final String FIND_NOTE_BY_ID = "SELECT * FROM NOTES WHERE noteid = #{noteId} and userid = #{userId}";
-	
+
+	// get note by full information, check duplicate
+	final String FIND_NOTE_BY_TITLE_AND_DESCRIPTION = "SELECT * FROM NOTES WHERE notetitle = #{noteTitle} and notedescription = #{noteDescription}";
+
 	// insert note
 	final String INSERT_NOTE = "INSERT INTO NOTES (notetitle, notedescription, userid) VALUES (#{noteTitle}, #{noteDescription}, #{userId})";
 	
@@ -33,6 +36,9 @@ public interface NoteMapper {
 
 	@Select(FIND_NOTE_BY_ID)
 	Note findById(Integer noteId, Integer userId);
+
+	@Select(FIND_NOTE_BY_TITLE_AND_DESCRIPTION)
+	Note findByTittelAndDescription(String noteTitle, String noteDescription);
 
 	@Insert(INSERT_NOTE)
 	@Options(useGeneratedKeys = true, keyProperty = "noteId")

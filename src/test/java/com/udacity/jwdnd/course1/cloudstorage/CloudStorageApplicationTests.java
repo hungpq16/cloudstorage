@@ -48,7 +48,7 @@ class CloudStorageApplicationTests {
 	@Test
 	public void notAccessibleWithoutLogin() {
 		driver.get("http://localhost:" + this.port + "/home");
-		Assertions.assertNotEquals("Home", driver.getTitle());
+		Assertions.assertNotEquals("link-home", driver.getTitle());
 	}
 
 	@Test
@@ -104,8 +104,8 @@ class CloudStorageApplicationTests {
 		submitNote.click();
 
 		// Back to home page
-		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("home")));
-		driver.findElement(By.className("home")).click();
+		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("link-home")));
+		driver.findElement(By.className("link-home")).click();
 		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-notes-tab")));
 		driver.findElement(By.id("nav-notes-tab")).click();
 
@@ -161,8 +161,8 @@ class CloudStorageApplicationTests {
 		submitNote.click();
 
 		// Back to home page
-		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("home")));
-		driver.findElement(By.className("home")).click();
+		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("link-home")));
+		driver.findElement(By.className("link-home")).click();
 		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-notes-tab")));
 		driver.findElement(By.id("nav-notes-tab")).click();
 
@@ -200,8 +200,8 @@ class CloudStorageApplicationTests {
 		deletebtn.click();
 
 		// Back to home page
-		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("home")));
-		driver.findElement(By.className("home")).click();
+		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("link-home")));
+		driver.findElement(By.className("link-home")).click();
 		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-notes-tab")));
 		driver.findElement(By.id("nav-notes-tab")).click();
 
@@ -254,8 +254,8 @@ class CloudStorageApplicationTests {
 		submitNote.click();
 
 		// Back to home page
-		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("home")));
-		driver.findElement(By.className("home")).click();
+		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("link-home")));
+		driver.findElement(By.className("link-home")).click();
 		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-credentials-tab")));
 		driver.findElement(By.id("nav-credentials-tab")).click();
 
@@ -317,8 +317,8 @@ class CloudStorageApplicationTests {
 		submitNote.click();
 
 		// Back to home page
-		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("home")));
-		driver.findElement(By.className("home")).click();
+		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("link-home")));
+		driver.findElement(By.className("link-home")).click();
 		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-credentials-tab")));
 		driver.findElement(By.id("nav-credentials-tab")).click();
 
@@ -356,8 +356,8 @@ class CloudStorageApplicationTests {
 		deletebtn.click();
 
 		// Back to home page
-		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("home")));
-		driver.findElement(By.className("home")).click();
+		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("link-home")));
+		driver.findElement(By.className("link-home")).click();
 		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-credentials-tab")));
 		driver.findElement(By.id("nav-credentials-tab")).click();
 
@@ -455,7 +455,7 @@ class CloudStorageApplicationTests {
 	@Test
 	public void testRedirection() {
 		// Create a test account
-		doMockSignUp("fun", "fun", "hungpq", "123");
+		doMockSignUp("Redirection","Test","RT","123");
 
 		// Check if we have been redirected to the log in page.
 		Assertions.assertEquals("http://localhost:" + this.port + "/login", driver.getCurrentUrl());
@@ -475,8 +475,8 @@ class CloudStorageApplicationTests {
 	@Test
 	public void testBadUrl() {
 		// Create a test account
-		doMockSignUp("fun", "fun", "hungpq", "123");
-		doLogIn("hungpq", "123");
+		doMockSignUp("URL","Test","UT","123");
+		doLogIn("UT", "123");
 
 		// Try to access a random made-up URL.
 		driver.get("http://localhost:" + this.port + "/some-random-page");
@@ -498,8 +498,8 @@ class CloudStorageApplicationTests {
 	@Test
 	public void testLargeUpload() {
 		// Create a test account
-		doMockSignUp("fun", "fun", "hungpq", "123");
-		doLogIn("hungpq", "123");
+		doMockSignUp("Large File","Test","LFT","123");
+		doLogIn("LFT", "123");
 
 		// Try to upload an arbitrary large file
 		WebDriverWait webDriverWait = new WebDriverWait(driver, 2);

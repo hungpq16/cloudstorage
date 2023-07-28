@@ -30,11 +30,15 @@ public class NoteController {
 
 		// In the case insert note
 		if (noteId == null) {
+			if (noteService.findByTittelAndDescription(note.getNoteTitle(), note.getNoteDescription()) != null) {
+				redirectAttributes.addFlashAttribute("errMessage", "The Note is exist, please try again!");
+				return "redirect:/result?error";
+			}
 			if (noteService.insert(note) == 0 ) {
 				redirectAttributes.addFlashAttribute("errMessage", "Add the Note failed, please try again!");
 				return "redirect:/result?error";
 			}
-			redirectAttributes.addFlashAttribute("successMessage", "Add the Note success!");
+			// redirectAttributes.addFlashAttribute("successMessage", "Add the Note success!");
 		} else {
 			// In the case update note
 			if (noteService.findById(noteId, userId) != null) {
@@ -42,7 +46,7 @@ public class NoteController {
 					redirectAttributes.addFlashAttribute("errMessage", "Update the Note failed, please try again!");
 					return "redirect:/result?error";
 				}
-				redirectAttributes.addFlashAttribute("successMessage", "Update the Note success!");
+				// redirectAttributes.addFlashAttribute("successMessage", "Update the Note success!");
 			}
 		}
 		return "redirect:/result?success";
@@ -57,7 +61,7 @@ public class NoteController {
 			redirectAttributes.addFlashAttribute("errMessage", "Remove the Note failed, please try again!");
 			return "redirect:/result?error";
 		}
-		redirectAttributes.addFlashAttribute("successMessage", "Remove the Note success");
+		// redirectAttributes.addFlashAttribute("successMessage", "Remove the Note success");
 		return "redirect:/result?success";
 	}
 

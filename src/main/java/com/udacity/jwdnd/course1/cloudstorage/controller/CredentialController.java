@@ -45,18 +45,22 @@ public class CredentialController {
 		//redirectAttributes.addFlashAttribute("url", TAB_CREDENTIAL);
 
 		if (credentialId == null) {
+			if (credentialService.findByUrlAndUsername(credential.getUrl(), credential.getUsername()) != null) {
+				redirectAttributes.addFlashAttribute("errMessage", "The Credential is exist, please try again!");
+				return "redirect:/result?error";
+			}
 			if (credentialService.insert(credential) == 0) {
 				redirectAttributes.addFlashAttribute("errMessage", "Add the Credential failed, please try again!");
 				return "redirect:/result?error";
 			}
-			redirectAttributes.addFlashAttribute("successMessage", "Add the Credential success!");
+			// redirectAttributes.addFlashAttribute("successMessage", "Add the Credential success!");
 		} else {
 			if (credentialService.findById(credentialId, userId) != null) {
 				if (credentialService.updateById(credential) == 0) {
 					redirectAttributes.addFlashAttribute("errMessage", "Update the Credential failed, please try again!");
 					return "redirect:/result?error";
 				}
-				redirectAttributes.addFlashAttribute("successMessage", "Update the Credential success!");
+				// redirectAttributes.addFlashAttribute("successMessage", "Update the Credential success!");
 			}
 		}
 		return "redirect:/result?success";
