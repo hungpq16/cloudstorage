@@ -20,7 +20,11 @@ public class UserService {
 		this.hashService = hashService;
 	}
 
-	public int createUser(User user) {
+	public User findUserByUsername(String username) {
+		return userMapper.getUser(username);
+	}
+
+	public int insert(User user) {
 		SecureRandom random = new SecureRandom();
 		byte[] salt = new byte[16];
 		random.nextBytes(salt);
